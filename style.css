@@ -432,4 +432,4 @@ button:focus-visible{outline:2px solid var(--hype);outline-offset:2px}
 .tuto-list { margin: 20px 0; font-size: 15px; line-height: 1.5; color: var(--txt); list-style: none; padding: 0; }
 .tuto-list li { margin-bottom: 14px; display: flex; align-items: center; gap: 12px; font-weight: 500;}
 .tuto-list li span { font-size: 22px; flex: none; }
-.tuto-btn
+.tuto-btn { margin-top: 24px; }
