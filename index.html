@@ -4,160 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1, user-scalable=no">
     <title>Klap</title>
-    <!-- Lien vers le Web App Manifest -->
-    <link rel="manifest" href="manifest.json?v=2">
-
-    <!-- Optimisations spécifiques pour iOS et Android -->
+    
+    <link rel="manifest" href="manifest.json?v=12">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Klap">
     <link rel="apple-touch-icon" href="icon-192.png">
+
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     
     <script src="https://www.youtube.com/iframe_api"></script>
-    
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 
     <style>
-        #ovAuth {
-            background: radial-gradient(circle at 50% 30%, #3a1525 0%, #16161F 60%, #08080C 100%);
-            display: none; 
-            flex-direction: column;
-            z-index: 9999;
-        }
+        #ovAuth { background: radial-gradient(circle at 50% 30%, #3a1525 0%, #16161F 60%, #08080C 100%); display: none; flex-direction: column; z-index: 9999; }
         #ovAuth.show { display: flex; }
-        .auth-hero {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
-        }
-        .auth-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 96px;
-            color: #ffffff;
-            line-height: 1;
-            letter-spacing: 2px;
-            margin: 0;
-            text-shadow: 0 4px 30px rgba(0,0,0,0.6);
-        }
+        .auth-hero { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; animation: fadeUp 1s cubic-bezier(0.2, 0.8, 0.2, 1) forwards; }
+        .auth-logo { font-family: 'Bebas Neue', sans-serif; font-size: 96px; color: #ffffff; line-height: 1; letter-spacing: 2px; margin: 0; text-shadow: 0 4px 30px rgba(0,0,0,0.6); }
         .auth-logo b { color: #FF2D6B; }
-        .auth-tagline {
-            font-family: 'Inter', sans-serif;
-            font-size: 14px;
-            font-weight: 600;
-            color: rgba(255,255,255,0.6);
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            margin-top: 8px;
-        }
-        .auth-panel {
-            background: rgba(30, 30, 42, 0.65);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 36px 24px 48px;
-            border-radius: 32px 32px 0 0;
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-            transform: translateY(100%);
-            animation: slideUpAuth 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.3);
-        }
-        .auth-title {
-            font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #fff;
-        }
-        .auth-input {
-            width: 100%;
-            background: rgba(0, 0, 0, 0.35);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-            font-family: inherit;
-            font-size: 16px;
-            padding: 18px 20px;
-            border-radius: 16px;
-            outline: none;
-            transition: all 0.3s ease;
-            box-sizing: border-box;
-        }
+        .auth-tagline { font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 6px; margin-top: 8px; }
+        .auth-panel { background: rgba(30, 30, 42, 0.65); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); border-top: 1px solid rgba(255,255,255,0.08); padding: 36px 24px 48px; border-radius: 32px 32px 0 0; display: flex; flex-direction: column; gap: 16px; transform: translateY(100%); animation: slideUpAuth 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s forwards; box-shadow: 0 -10px 40px rgba(0,0,0,0.3); }
+        .auth-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+        .auth-input { width: 100%; background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.1); color: #fff; font-family: inherit; font-size: 16px; padding: 18px 20px; border-radius: 16px; outline: none; transition: all 0.3s ease; box-sizing: border-box; }
         .auth-input::placeholder { color: rgba(255,255,255,0.4); }
         .auth-input:focus { border-color: #FF2D6B; background: rgba(0, 0, 0, 0.6); }
-        .auth-btn {
-            background: #FF2D6B;
-            color: #fff;
-            border: none;
-            padding: 18px;
-            border-radius: 16px;
-            font-weight: 700;
-            font-size: 16px;
-            margin-top: 8px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
+        .auth-btn { background: #FF2D6B; color: #fff; border: none; padding: 18px; border-radius: 16px; font-weight: 700; font-size: 16px; margin-top: 8px; cursor: pointer; transition: transform 0.2s; }
         .auth-btn:active { transform: scale(0.97); }
-        .auth-switch {
-            background: transparent;
-            color: rgba(255,255,255,0.5);
-            border: none;
-            font-size: 14px;
-            padding: 10px;
-            text-decoration: underline;
-            cursor: pointer;
-        }
-        .auth-forgot {
-            background: transparent;
-            border: none;
-            color: rgba(255,255,255,0.5);
-            font-size: 13px;
-            text-align: right;
-            padding: 0 4px;
-            cursor: pointer;
-            margin-top: -8px;
-            text-decoration: underline;
-            font-family: inherit;
-        }
-        
-        #btnOpenNotifs:active { transform: scale(0.98); transition: transform 0.1s; }
-
-        @keyframes fadeUp {
-            0% { opacity: 0; transform: translateY(30px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes slideUpAuth {
-            0% { transform: translateY(100%); }
-            100% { transform: translateY(0); }
-        }
+        .auth-switch { background: transparent; color: rgba(255,255,255,0.5); border: none; font-size: 14px; padding: 10px; text-decoration: underline; cursor: pointer; }
+        .auth-forgot { background: transparent; border: none; color: rgba(255,255,255,0.5); font-size: 13px; text-align: right; padding: 0 4px; cursor: pointer; margin-top: -8px; text-decoration: underline; font-family: inherit; }
+        @keyframes fadeUp { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUpAuth { 0% { transform: translateY(100%); } 100% { transform: translateY(0); } }
     </style>
 </head>
 <body>
     <div class="stage">
       <div class="device">
         <div class="app" id="app">
-          <div class="statusbar">
-            <span class="sb-time">20:47</span>
-            <span class="sb-right">
-              <span class="bars"><i></i><i></i><i></i><i></i></span>
-              <svg width="16" height="12" viewBox="0 0 24 18" fill="none"><path d="M12 14.7a1.6 1.6 0 100 .01M5.5 9.4a9 9 0 0113 0M8.7 12a4.8 4.8 0 016.6 0" stroke="#F5F5F7" stroke-width="2.2" stroke-linecap="round"/></svg>
-              <span class="batt"><span></span></span>
-            </span>
-          </div>
-
-          <button class="cinema-exit" id="cinemaExit" aria-label="Quitter le plein écran">✕</button>
+          
+          <button class="cinema-exit" id="cinemaExit" aria-label="Quitter le plein écran">✕ Fermer</button>
 
           <section class="screen feed active" id="screen-feed" data-mode="trailer">
+            
+            <div id="endOfDeck" style="display:none; position:absolute; inset:0; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:30px; background:#050509; z-index:100;">
+                <div style="font-size:60px; margin-bottom:20px;">🍿</div>
+                <h2 style="font-family:var(--disp); font-size:42px; color:#fff;">C'est dans la boîte !</h2>
+                <p style="color:var(--txt2); font-size:15px; margin-top:10px;">Tu as vu toutes les recommandations du moment. Reviens plus tard pour de nouveaux films et séries.</p>
+                <button class="btn-primary" style="margin-top:30px; width:80%;" onclick="showScreen('sorties')">Explorer les sorties</button>
+            </div>
+
             <div class="feed-stack">
               <div class="feed-card" id="feedCard">
                 <div class="fc-media">
                   <div class="fc-bg" id="fcBg"></div>
+                  
+                  <div class="poster-question" id="posterQuestion">
+                      <h2>On aime ou pas<br>cette affiche ?</h2>
+                  </div>
+
                   <div class="fc-poster-clear" id="fcPosterClear"></div>
                   <div class="fc-video-wrapper" id="fcVideoContainer"><div id="ytPlayer"></div></div>
                 </div>
@@ -171,22 +77,31 @@
             </div>
             
             <div class="card-quiz" id="cardQuiz"><div class="cq-bg"></div><div class="cq-scrim"></div><div class="cq-inner"><div class="cq-tag" id="quizTag">🧠 Quiz ciné</div><h2 class="cq-q" id="quizQ"></h2><div class="cq-grid" id="quizGrid"></div></div></div>
+            <div class="card-quiz" id="cardSurvey" style="display:none;"><div class="cq-bg"></div><div class="cq-scrim"></div><div class="cq-inner"><div class="cq-tag" style="color:var(--mint);background:rgba(50,215,75,.14)" id="surveyTag">📊 Sondage</div><h2 class="cq-q" id="surveyQ"></h2><div class="cq-grid" id="surveyGrid"></div></div></div>
             
             <div class="card-ab" id="cardAb">
-              <button class="ab-half" id="abA"><div class="ab-bg" id="abAbg"></div><div class="ab-photo" id="abAph"></div><div class="ab-pct" id="abApct"></div></button>
-              <button class="ab-half" id="abB"><div class="ab-bg" id="abBbg"></div><div class="ab-photo" id="abBph"></div><div class="ab-pct" id="abBpct"></div></button>
+              <div class="ab-half" id="abA" role="button"><div class="ab-bg" id="abAbg"></div><div class="ab-photo" id="abAph"></div><div class="ab-pct" id="abApct"></div></div>
+              <div class="ab-half" id="abB" role="button"><div class="ab-bg" id="abBbg"></div><div class="ab-photo" id="abBph"></div><div class="ab-pct" id="abBpct"></div></div>
               <div class="ab-title-center" id="abVsTitle">Lequel veux-tu le plus voir ?</div>
+              <div id="abTotalVotes" style="position:absolute; bottom:30px; width:100%; text-align:center; color:#fff; font-size:16px; font-weight:700; z-index:10; opacity:0; transition:opacity .3s;">0 votes</div>
             </div>
             
             <div class="card-person" id="cardPerson"><div class="cp-bg"></div><div class="cp-scrim"></div><div class="cp-inner"><div class="cp-photo" id="cpPhoto"></div><h2 class="cp-name" id="cpName"></h2><p class="cp-q">Apprécies-tu cet artiste ?</p><div class="cp-actions"><button class="cp-btn" onclick="votePerson(true)">Oui, je kiffe</button><button class="cp-btn" onclick="votePerson(false)">Pas ma vibe</button></div></div></div>
             
             <div class="feed-ui">
               <div class="feed-top">
-                <button class="icon-btn" id="btnMute" style="position:absolute; left:18px; top:0; z-index:50;">🔊</button>
+                <button class="icon-btn" id="btnMute">🔇</button>
                 <div class="wordmark">KLAP<b>.</b></div>
                 <button class="cine-btn" id="cineBtn" aria-label="Plein écran 16:9">⛶</button>
               </div>
-              <div class="feed-meta"><button id="filmInfo"><span class="fm-chip" id="fmGenre"></span><span class="fm-title" id="fmTitle"></span><span class="fm-meta" id="fmMeta"></span><span class="fm-more">ⓘ Plus d'infos</span></button></div>
+              <div class="feed-meta">
+                  <button id="filmInfo">
+                      <span class="fm-chip" id="fmGenre"></span>
+                      <span class="fm-title" id="fmTitle"></span>
+                      <span class="fm-meta" id="fmMeta"></span>
+                      <span class="fm-more">ⓘ Plus d'infos</span>
+                  </button>
+              </div>
               <div class="rail"><div class="rail-item"><button class="rb" id="btnSeen"><span>👀</span></button><span class="rb-lbl">Vu</span></div><div class="rail-item"><button class="rb" id="btnNope"><span>✕</span></button><span class="rb-lbl">Passe</span></div><div class="rail-item like-item"><div class="like-wrap" id="likeWrap"><svg class="ring" viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="45"/><circle class="ring-prog" id="ringProg" cx="50" cy="50" r="45"/></svg><button class="rb like" id="btnLike"><span>♥</span></button></div><span class="rb-lbl">Kiffe</span></div></div>
             </div>
             <div class="flash" id="flash"></div>
@@ -194,8 +109,11 @@
 
           <section class="screen sorties scroll" id="screen-sorties">
             <div class="s-head">
-                <h1 class="s-title">Sorties</h1>
-                <div class="search-bar" id="searchBar"><input id="searchInput" placeholder="Rechercher un film…"></div>
+                <div class="s-top" style="display:flex; justify-content:space-between; align-items:center;">
+                    <h1 class="s-title">Sorties</h1>
+                    <button class="icon-btn" id="btnToggleSearch">🔎</button>
+                </div>
+                <div class="search-bar" id="searchBar"><input id="searchInput" placeholder="Rechercher un film ou une série…"></div>
                 <div class="chips">
                     <button class="chip active" data-filter="hot">🔥 Les + Attendus</button>
                     <button class="chip" data-filter="now">🎟️ Actuellement</button>
@@ -241,15 +159,6 @@
                 </div>
               </div>
               
-              <!-- Lien vers le Web App Manifest -->
-<link rel="manifest" href="manifest.json">
-
-<!-- Optimisations spécifiques pour iOS (Safari) -->
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Klap">
-<link rel="apple-touch-icon" href="icon-192.png">
-
               <div class="p-card">
                 <div class="p-row">
                   <span class="p-row-label">Mon énergie du jour <button class="info-icon" id="activityInfo">i</button></span>
@@ -271,14 +180,20 @@
                 </div>
               </div>
 
-              <div class="p-streak"><div class="streak-flame">🔥</div><div><div class="streak-num">7</div><div class="streak-lbl">jours de streak</div></div></div>
-              <button class="invite-btn" id="btnInvite">👥 Inviter / Ajouter des amis</button>
+              <div class="p-streak"><div class="streak-flame">🔥</div><div><div class="streak-num" id="uiStreak">0</div><div class="streak-lbl">jours de streak</div></div></div>
+              <button class="invite-btn" id="btnInvite">👥 Inviter / Rechercher un ami</button>
               
               <div class="p-shelf"><div class="shelf-head"><h3>🎬 Mes envies <span id="watchCount">(0)</span></h3><button class="seeall" data-grid="watch">Tout voir ›</button></div><div class="strip" id="watchStrip"></div></div>
               <div class="p-shelf"><div class="shelf-head"><h3>🍿 Mes films vus <span id="seenCount">(0)</span></h3><button class="seeall" data-grid="seen">Tout voir ›</button></div><div class="strip" id="seenStrip"></div></div>
               
               <div class="lb">
-                <div class="lb-head"><span class="lb-title">🏆 Leaderboard de Juin</span></div>
+                <div class="lb-head" style="justify-content:space-between;">
+                    <div style="display:flex; align-items:center; gap:8px;">
+                        <span class="lb-title">🏆 Leaderboard</span>
+                        <span style="font-size:14px; color:var(--txt2); font-weight:600; margin-top:2px;">Mensuel</span>
+                    </div>
+                    <button class="btn-ghost" id="btnHistory" style="margin:0; padding:6px 14px; font-size:12px; border:1px solid var(--line); border-radius:10px;">Historique</button>
+                </div>
                 <div class="seg">
                   <button class="seg-btn active" data-board="friends">👥 Mes amis</button>
                   <button class="seg-btn" data-board="global">🌍 Global</button>
@@ -292,7 +207,7 @@
           <div class="toast" id="toast"><span id="toastTxt"></span></div>
 
           <div class="overlays" id="overlays">
-             
+          
              <div class="ov" id="ovAuth">
                 <div class="auth-hero">
                     <h1 class="auth-logo">KLAP<b>.</b></h1>
@@ -309,17 +224,29 @@
                     <button class="auth-switch" id="authSwitchBtn">Déjà un compte ? Me connecter</button>
                 </div>
              </div>
-
+             
+             <div class="ov sheet" id="ovHistory">
+                <div class="scrim" data-close></div>
+                <div class="sheet-panel draggable-sheet">
+                    <div class="sheet-handle" data-close></div>
+                    <h2 class="qcm-title">Historique des classements</h2>
+                    <p class="qcm-sub">Retrouve tes performances des mois précédents.</p>
+                    <div id="historyList" style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
+                        <p class="p-note" style="text-align:center;">Aucun historique pour le moment.</p>
+                    </div>
+                </div>
+            </div>
+             
              <div class="ov sheet" id="ovAddFriend">
               <div class="scrim" data-close></div>
               <div class="sheet-panel">
                 <div class="sheet-handle" data-close></div>
-                <h2 class="qcm-title">Ajouter un ami</h2>
-                <p class="qcm-sub">Entre le pseudo de ton pote pour l'ajouter à ton réseau d'amis.</p>
+                <h2 class="qcm-title">Rechercher un ami</h2>
+                <p class="qcm-sub">Trouve tes potes pour comparer vos points et organiser vos séances.</p>
                 <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
                     <input type="text" id="searchFriendEmail" class="auth-input" placeholder="Pseudo (ou e-mail)" style="background:rgba(0,0,0,0.2);">
-                    <p id="friendSearchResult" style="font-size:14px; min-height:20px; margin:0; font-weight:500; text-align:center;"></p>
-                    <button class="btn-primary" id="btnSearchFriend">Rechercher & Ajouter</button>
+                    <div id="friendSearchResult" style="min-height:40px; margin-top:8px;"></div>
+                    <button class="btn-primary" id="btnSearchFriend">Rechercher</button>
                 </div>
               </div>
             </div>
@@ -333,24 +260,113 @@
               </div>
             </div>
 
-             <div class="ov tuto" id="ovTuto"><div class="scrim glass"></div><div class="tuto-inner"><div class="tuto-hand">👆</div><h2 class="tuto-title">Bienvenue sur Klap</h2><ul class="tuto-list"><li><span>🔥</span> Swipe pour gagner des points et défier tes amis.</li><li><span>🍿</span> Informe-toi sur les dernières sorties de film.</li><li><span>🗣️</span> Donne ton avis sur les réalisateurs et casting.</li></ul><button class="btn-primary tuto-btn" data-tuto-close>C'est parti</button></div></div>
-             <div class="ov sheet" id="ovSheet"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><div class="sheet-top"><div class="sheet-poster" id="shPoster"></div><div class="sheet-head"><h2 id="shTitle"></h2><p class="sub" id="shSub"></p><div class="hype" id="shHypeBlock"><div class="hype-wrap">Hype communauté<div class="hype-bar"><span id="shHypeBar"></span></div></div><b id="shHype"></b></div><div class="pubscore" id="shScoreBlock" style="display:none"><span>Score public</span><span class="star-static" id="shStars"></span><b id="shScoreNum"></b></div></div></div><p class="sheet-cast" id="shCast"></p><p class="sheet-syn" id="shSyn"></p><button class="btn-primary wish-btn" id="shWish">♥ Ajouter à mes envies</button></div></div>
-             <div class="ov popup" id="ovQualLeft"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui coince ?</h2><div class="grid2"><button class="qbtn" data-q="left" data-noun="le casting"><span>❌</span>Casting</button><button class="qbtn" data-q="left" data-noun="l'histoire"><span>🥱</span>L'histoire</button><button class="qbtn" data-q="left" data-noun="ce ton"><span>🛑</span>Pas ma vibe</button><button class="qbtn" data-q="left" data-noun="ce rendu"><span>📉</span>Trop cheap</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
-             <div class="ov popup" id="ovQualRight"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui te hype ?</h2><div class="grid2"><button class="qbtn" data-q="right" data-noun="ce casting"><span>⭐</span>Le casting</button><button class="qbtn" data-q="right" data-noun="cette dose d'action"><span>🍿</span>L'action</button><button class="qbtn" data-q="right" data-noun="ce pitch"><span>🤯</span>L'histoire</button><button class="qbtn" data-q="right" data-noun="ce délire"><span>❤️</span>Mon délire</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
-             <div class="ov popup" id="ovAttr"><div class="scrim glass" data-attr-skip></div><div class="popup-panel"><h2 class="q-q" style="font-size:26px;">Où as-tu découvert ce film pour la première fois ?</h2><div class="grid2" id="attrGrid"><button class="qbtn" data-attr>Au cinéma</button><button class="qbtn" data-attr>Dans les rues</button><button class="qbtn" data-attr>Réseaux Sociaux</button><button class="qbtn" data-attr>Klap</button><button class="qbtn" data-attr style="grid-column: 1 / -1; width: calc(50% - 6px); margin: 0 auto;">Influenceurs</button></div><button class="q-cancel" data-attr-skip>Passer cette question</button></div></div>
+             <div class="ov tuto" id="ovTuto"><div class="scrim glass"></div><div class="tuto-inner"><div class="tuto-hand">👆</div><h2 class="tuto-title">Bienvenue sur Klap</h2><ul class="tuto-list"><li><span>🔥</span> Swipe pour gagner des points et défier tes amis.</li><li><span>🍿</span> Informe-toi sur les dernières sorties.</li><li><span>🗣️</span> Donne ton avis sur les films et séries.</li></ul><button class="btn-primary tuto-btn" data-tuto-close>C'est parti</button></div></div>
+             
+             <div class="ov sheet" id="ovSheet">
+                 <div class="scrim" data-close></div>
+                 <div class="sheet-panel draggable-sheet">
+                     <div class="sheet-handle" data-close></div>
+                     <div class="sheet-top">
+                         <div class="sheet-poster" id="shPoster"></div>
+                         <div class="sheet-head">
+                             <h2 id="shTitle"></h2>
+                             <p class="sub" id="shSub"></p>
+                             <div class="hype" id="shHypeBlock">
+                                 <div class="hype-wrap">Hype Klap<div class="hype-bar"><span id="shHypeBar"></span></div></div>
+                                 <b id="shHype"></b>
+                             </div>
+                             <div class="pubscore" id="shScoreBlock" style="margin-top:12px;">
+                                 <span>Note Klap</span>
+                                 <span class="star-static" style="margin-left:8px;">★</span><b id="shScoreNum"></b>
+                             </div>
+                         </div>
+                     </div>
+                     <p class="sheet-cast" id="shCast"></p>
+                     <p class="sheet-syn" id="shSyn"></p>
+                     <button class="btn-primary wish-btn" id="shWish">♥ Ajouter à mes envies</button>
+                 </div>
+             </div>
+
+             <div class="ov popup" id="ovQualLeft"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui coince ?</h2><div class="grid2"><button class="qbtn" data-q="left"><span>❌</span>Le casting</button><button class="qbtn" data-q="left"><span>🥱</span>L'histoire</button><button class="qbtn" data-q="left"><span>🛑</span>Pas ma vibe</button><button class="qbtn" data-q="left"><span>📉</span>Trop cheap</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
+             <div class="ov popup" id="ovQualRight"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui te hype ?</h2><div class="grid2"><button class="qbtn" data-q="right"><span>⭐</span>Le casting</button><button class="qbtn" data-q="right"><span>🍿</span>L'action</button><button class="qbtn" data-q="right"><span>🤯</span>L'histoire</button><button class="qbtn" data-q="right"><span>❤️</span>Mon délire</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
+             <div class="ov popup" id="ovAttr"><div class="scrim glass" data-attr-skip></div><div class="popup-panel"><h2 class="q-q" style="font-size:26px;">Où as-tu découvert cette œuvre ?</h2><div class="grid2" id="attrGrid"><button class="qbtn" data-attr>Au cinéma</button><button class="qbtn" data-attr>Dans la rue</button><button class="qbtn" data-attr>Réseaux Sociaux</button><button class="qbtn" data-attr>Bouche à oreille</button><button class="qbtn" data-attr style="grid-column: 1 / -1; width: calc(50% - 6px); margin: 0 auto;">Klap !</button></div><button class="q-cancel" data-attr-skip>Passer cette question</button></div></div>
+             
              <div class="ov match" id="ovMatch"><div class="match-bg"></div><div class="confetti" id="confetti"></div><div class="match-inner"><div class="match-poster" id="matchPoster"></div><div class="match-bubbles" id="matchBubbles"></div><h1 class="match-title">It's a Match !</h1><p class="match-sub" id="matchSub"></p><button class="btn-cta match-invite-btn" id="btnInviteMatch">👥 Invite tes amis</button><button class="btn-ghost" id="btnBackSwipe" style="margin-top:16px;">Retourner au swipe</button></div></div>
              <div class="ov sheet" id="ovMatchFriends"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Avertir tes amis</h2><p class="qcm-sub">Sélectionne les amis avec qui organiser la séance.</p><div class="qcm-opts" id="matchFriendsList"></div><button class="btn-primary" id="btnSendInvites" style="margin-top:16px;" disabled>Valider l'invitation</button></div></div>
-             <div class="ov popup" id="ovPersonResult"><div class="scrim glass"></div><div class="popup-panel center"><h2 class="q-q">La commu a parlé</h2><div style="display:flex; justify-content:center; gap:30px; margin: 24px 0;"><div><div style="font-size:42px;">😍</div><div id="prLike" style="font-family:var(--disp); font-size:36px; color:var(--mint);">75%</div></div><div><div style="font-size:42px;">🥶</div><div id="prDislike" style="font-family:var(--disp); font-size:36px; color:var(--txt3);">25%</div></div></div><button class="btn-primary" id="btnPersonNext">Retour au swipe</button></div></div>
-             <div class="ov sheet" id="ovFilmOptions"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Que faire avec ce film ?</h2><div class="qcm-opts" id="foList"></div></div></div>
-             <div class="ov sheet" id="ovLevels"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Progression des Niveaux</h2><p class="qcm-sub">Débloque des multiplicateurs de points.</p><div class="lvl-timeline"><div class="lvl-item done"><div class="lvl-icon">🍿</div><div class="lvl-info"><h4>Spectateur</h4><p>Multiplicateur x1</p></div></div><div class="lvl-item done"><div class="lvl-icon">🚶</div><div class="lvl-info"><h4>Figurant</h4><p>Multiplicateur x1.1</p></div></div><div class="lvl-item done"><div class="lvl-icon">🤫</div><div class="lvl-info"><h4>Caméo</h4><p>Multiplicateur x1.2</p></div></div><div class="lvl-item done"><div class="lvl-icon">🎭</div><div class="lvl-info"><h4>2nd Rôle</h4><p>Multiplicateur x1.3</p></div></div><div class="lvl-item current"><div class="lvl-icon">⭐</div><div class="lvl-info"><h4>Tête d'Affiche</h4><p>Multiplicateur x1.5</p></div></div><div class="lvl-item"><div class="lvl-icon">🌟</div><div class="lvl-info"><h4>Star</h4><p>Multiplicateur x1.8</p></div></div><div class="lvl-item"><div class="lvl-icon">🎬</div><div class="lvl-info"><h4>Réalisateur</h4><p>Multiplicateur x2</p></div></div><div class="lvl-item"><div class="lvl-icon">👑</div><div class="lvl-info"><h4>Légende</h4><p>Multiplicateur x2.5</p></div></div><div class="lvl-item"><div class="lvl-icon">🦄</div><div class="lvl-info"><h4>Mythe</h4><p>Multiplicateur x3</p></div></div></div><button class="btn-primary" data-close>Fermer</button></div></div>
+             
+             <div class="ov popup" id="ovPersonResult"><div class="scrim glass"></div><div class="popup-panel center">
+                <h2 class="q-q">La commu a parlé</h2>
+                <p id="prTotalVotes" style="text-align:center; color:var(--txt2); font-size:14px; margin:0 0 16px 0; font-weight:600;">Calcul des votes...</p>
+                <div style="display:flex; justify-content:center; gap:30px; margin: 0 0 24px 0;">
+                    <div><div style="font-size:42px;">😍</div><div id="prLike" style="font-family:var(--disp); font-size:36px; color:var(--mint);">-</div></div>
+                    <div><div style="font-size:42px;">🥶</div><div id="prDislike" style="font-family:var(--disp); font-size:36px; color:var(--txt3);">-</div></div>
+                </div>
+                <button class="btn-primary" id="btnPersonNext">Retour au swipe</button>
+             </div></div>
+             
+             <div class="ov sheet" id="ovFilmOptions"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Gérer cette œuvre</h2><div class="qcm-opts" id="foList"></div></div></div>
+             
+             <div class="ov sheet" id="ovLevels">
+                 <div class="scrim" data-close></div>
+                 <div class="sheet-panel draggable-sheet">
+                     <div class="sheet-handle" data-close></div>
+                     <h2 class="qcm-title">Progression des Niveaux</h2>
+                     <p class="qcm-sub">Débloque des multiplicateurs de points.</p>
+                     <div class="lvl-timeline" id="levelsTimeline">
+                         <div class="lvl-item"><div class="lvl-icon">🍿</div><div class="lvl-info"><h4>Spectateur</h4><p>Multiplicateur x1</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">🚶</div><div class="lvl-info"><h4>Figurant</h4><p>Multiplicateur x1.1</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">🤫</div><div class="lvl-info"><h4>Caméo</h4><p>Multiplicateur x1.2</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">🎭</div><div class="lvl-info"><h4>2nd Rôle</h4><p>Multiplicateur x1.3</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">⭐</div><div class="lvl-info"><h4>Tête d'Affiche</h4><p>Multiplicateur x1.5</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">🌟</div><div class="lvl-info"><h4>Star</h4><p>Multiplicateur x1.8</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">🎬</div><div class="lvl-info"><h4>Réalisateur</h4><p>Multiplicateur x2</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">👑</div><div class="lvl-info"><h4>Légende</h4><p>Multiplicateur x2.5</p></div></div>
+                         <div class="lvl-item"><div class="lvl-icon">🦄</div><div class="lvl-info"><h4>Mythe</h4><p>Multiplicateur x3</p></div></div>
+                     </div>
+                     <button class="btn-primary" data-close>Fermer</button>
+                 </div>
+             </div>
+
              <div class="ov sheet" id="ovQcm"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Qu'est-ce qui te ferait revenir ?</h2><p class="qcm-sub">Choisis tout ce qui te tente.</p><div class="qcm-opts"><button class="qcm-opt">🎟️ Réductions sur les séances</button><button class="qcm-opt">🍿 Pop-corn ou boisson offerts</button><button class="qcm-opt">🎬 Avant-premières exclusives</button><button class="qcm-opt">🎁 Goodies des films</button><button class="qcm-opt">💳 Cartes cadeaux ciné</button></div><button class="btn-primary" id="qcmSend">Envoyer mon avis</button></div></div>
              <div class="ov popup" id="ovStars"><div class="scrim glass" data-close-stars></div><div class="popup-panel center"><h2 class="q-q">Ta note</h2><p class="q-film" id="starsFilm"></p><div class="stars" id="starsRow"><button class="star" data-v="1">★</button><button class="star" data-v="2">★</button><button class="star" data-v="3">★</button><button class="star" data-v="4">★</button><button class="star" data-v="5">★</button></div><button class="btn-primary" id="starsNext" disabled>Continuer</button><button class="q-cancel" data-close-stars>Annuler</button></div></div>
-             <div class="ov popup" id="ovSeen"><div class="scrim glass" data-close-seen></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui a fait le job ?</h2><div class="grid2"><button class="qbtn" data-seen><span>⭐</span>Le casting</button><button class="qbtn" data-seen><span>📖</span>Le scénario</button><button class="qbtn" data-seen><span>🎬</span>La mise en scène</button><button class="qbtn" data-seen><span>🎧</span>L'ambiance</button></div><button class="q-cancel" data-close-seen>Plus tard</button></div></div>
+             
+             <div class="ov popup" id="ovSeenGood">
+                <div class="scrim glass" data-close-seen></div>
+                <div class="popup-panel">
+                    <h2 class="q-q">Qu'est-ce qui a fait le job ?</h2>
+                    <div class="grid2">
+                        <button class="qbtn-multi"><span>⭐</span>Le casting</button>
+                        <button class="qbtn-multi"><span>📖</span>Le scénario</button>
+                        <button class="qbtn-multi"><span>🎬</span>La réal</button>
+                        <button class="qbtn-multi"><span>🎧</span>L'ambiance</button>
+                    </div>
+                    <button class="btn-primary" id="btnSeenGoodValidate" style="margin-top:16px;" disabled>Valider</button>
+                    <button class="q-cancel" data-close-seen>Plus tard</button>
+                </div>
+            </div>
+
+            <div class="ov popup" id="ovSeenBad">
+                <div class="scrim glass" data-close-seen></div>
+                <div class="popup-panel">
+                    <h2 class="q-q">Qu'est-ce qui n'a pas marché ?</h2>
+                    <div class="grid2">
+                        <button class="qbtn-multi"><span>❌</span>Le casting</button>
+                        <button class="qbtn-multi"><span>🥱</span>Le scénario</button>
+                        <button class="qbtn-multi"><span>📉</span>La réal</button>
+                        <button class="qbtn-multi"><span>🛑</span>Trop long</button>
+                    </div>
+                    <button class="btn-primary" id="btnSeenBadValidate" style="margin-top:16px;" disabled>Valider</button>
+                    <button class="q-cancel" data-close-seen>Plus tard</button>
+                </div>
+            </div>
+
              <div class="ov popup" id="ovCap"><div class="scrim glass" data-cap-close></div><div class="popup-panel center"><div style="font-size:48px">🌙</div><h2 class="q-q">Quota atteint</h2><p class="q-film">Tu as gagné tous tes points aujourd'hui. Mais tu peux continuer à swiper pour le fun !</p><button class="btn-primary" data-cap-close>Continuer</button></div></div>
-             <div class="ov sheet" id="ovGrid"><div class="scrim" data-close></div><div class="grid-panel"><div class="grid-top"><h2 id="gridTitle"></h2><button class="grid-close" data-close>✕</button></div><div class="grid-3" id="gridBody"></div></div></div>
+             
+             <div class="ov sheet" id="ovGrid"><div class="scrim" data-close></div><div class="grid-panel draggable-sheet"><div class="grid-top"><h2 id="gridTitle"></h2><button class="grid-close" data-close>✕</button></div><div class="grid-3" id="gridBody"></div></div></div>
+             
              <div class="ov popup" id="ovActivityInfo"><div class="scrim glass" data-close></div><div class="popup-panel center"><div class="info-emoji">🎬</div><h2 class="q-q">Mon activité ciné</h2><p class="info-text">Swipe des films, ajoute-les à tes envies et note-les pour gagner des points.</p><button class="btn-primary" data-close>J'ai compris</button></div></div>
-             <div class="ov sheet" id="ovPointsInfo"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><div class="pi-head"><h2 class="qcm-title">Comment fonctionnent les points ?</h2><button class="grid-close" data-close aria-label="Fermer">✕</button></div><div class="pi-section"><h3>🎁 1. La Cagnotte Boutique</h3><p>Les points s'accumulent dans ta cagnotte et ne retombent jamais à zéro. Achète tes récompenses.</p></div><div class="pi-section"><h3>🏆 2. Multiplicateurs</h3><p>Plus ton statut est élevé, plus tu bénéficies d'un multiplicateur de points.</p></div><div class="pi-section"><h3>🗓️ 3. Maintien du Statut</h3><p>Les points de progression repartent à zéro chaque 1er du mois. Reste actif pour conserver ton statut.</p></div><button class="btn-primary" data-close>Fermer</button></div></div>
-             <div class="ov feedback" id="ovFeedback"><div class="scrim"></div><div class="fb-card"><div class="fb-title" id="fbTitle">🔥 Hype de tes amis</div><div class="fb-pct" id="fbPct">0%</div><div class="fb-bar"><span id="fbBar"></span></div><div class="fb-sub" id="fbSub"></div><button class="btn-primary fb-next" id="fbNext">⏭️ Film suivant</button></div></div>
+             <div class="ov sheet" id="ovPointsInfo"><div class="scrim" data-close></div><div class="sheet-panel draggable-sheet"><div class="sheet-handle" data-close></div><div class="pi-head"><h2 class="qcm-title">Comment fonctionnent les points ?</h2><button class="grid-close" data-close aria-label="Fermer">✕</button></div><div class="pi-section"><h3>🎁 1. La Cagnotte Boutique</h3><p>Les points s'accumulent dans ta cagnotte et ne retombent jamais à zéro.</p></div><div class="pi-section"><h3>🏆 2. Multiplicateurs</h3><p>Plus ton statut est élevé, plus tu bénéficies d'un multiplicateur de points.</p></div><div class="pi-section"><h3>🗓️ 3. Maintien du Statut</h3><p>Les points de progression repartent à zéro chaque mois. Reste actif pour conserver ton statut.</p></div><button class="btn-primary" data-close>Fermer</button></div></div>
+             <div class="ov feedback" id="ovFeedback"><div class="scrim"></div><div class="fb-card"><div class="fb-title" id="fbTitle">🔥 Hype Klap</div><div class="fb-pct" id="fbPct">0%</div><div class="fb-bar"><span id="fbBar"></span></div><div class="fb-sub" id="fbSub"></div><button class="btn-primary fb-next" id="fbNext">⏭️ Suivant</button></div></div>
           </div>
         </div>
       </div>
