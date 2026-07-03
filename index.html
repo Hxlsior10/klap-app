@@ -72,21 +72,21 @@
                 <div class="fc-grain"></div>
                 <div class="fc-scrim"></div>
                 <div class="stamp stamp-nope" id="stampNope">PASSE</div>
-                <div class="stamp stamp-like" id="stampLike">KIFFE</div>
+                <div class="stamp stamp-like" id="stampLike">LIKE</div>
               </div>
             </div>
             
             <div class="card-quiz" id="cardQuiz"><div class="cq-bg"></div><div class="cq-scrim"></div><div class="cq-inner"><div class="cq-tag" id="quizTag">🧠 Quiz ciné</div><h2 class="cq-q" id="quizQ"></h2><div class="cq-grid" id="quizGrid"></div></div></div>
-            <div class="card-quiz" id="cardSurvey" style="display:none;"><div class="cq-bg"></div><div class="cq-scrim"></div><div class="cq-inner"><div class="cq-tag" style="color:var(--mint);background:rgba(50,215,75,.14)" id="surveyTag">📊 Sondage</div><h2 class="cq-q" id="surveyQ"></h2><div class="cq-grid" id="surveyGrid"></div></div></div>
+            <div class="card-quiz" id="cardSurvey"><div class="cq-bg"></div><div class="cq-scrim"></div><div class="cq-inner"><div class="cq-tag" style="color:var(--mint);background:rgba(50,215,75,.14)" id="surveyTag">📊 Sondage</div><h2 class="cq-q" id="surveyQ"></h2><div class="cq-grid" id="surveyGrid"></div></div></div>
             
             <div class="card-ab" id="cardAb">
               <div class="ab-half" id="abA" role="button"><div class="ab-bg" id="abAbg"></div><div class="ab-photo" id="abAph"></div><div class="ab-pct" id="abApct"></div></div>
               <div class="ab-half" id="abB" role="button"><div class="ab-bg" id="abBbg"></div><div class="ab-photo" id="abBph"></div><div class="ab-pct" id="abBpct"></div></div>
-              <div class="ab-title-center" id="abVsTitle">Lequel veux-tu le plus voir ?</div>
+              <div class="ab-title-center" id="abVsTitle">Lequel te tente le plus ?<br><span style="font-size:15px; opacity:0.8; font-weight:normal; text-transform:none; font-family:var(--ui);">Clique pour voter</span></div>
               <div id="abTotalVotes" style="position:absolute; bottom:30px; width:100%; text-align:center; color:#fff; font-size:16px; font-weight:700; z-index:10; opacity:0; transition:opacity .3s;">0 votes</div>
             </div>
             
-            <div class="card-person" id="cardPerson"><div class="cp-bg"></div><div class="cp-scrim"></div><div class="cp-inner"><div class="cp-photo" id="cpPhoto"></div><h2 class="cp-name" id="cpName"></h2><p class="cp-q">Apprécies-tu cet artiste ?</p><div class="cp-actions"><button class="cp-btn" onclick="votePerson(true)">Oui, je kiffe</button><button class="cp-btn" onclick="votePerson(false)">Pas ma vibe</button></div></div></div>
+            <div class="card-person" id="cardPerson"><div class="cp-bg"></div><div class="cp-scrim"></div><div class="cp-inner"><div class="cp-photo" id="cpPhoto"></div><h2 class="cp-name" id="cpName"></h2><p class="cp-q">Apprécies-tu cet artiste ?</p><div class="cp-actions"><button class="cp-btn" onclick="votePerson(true)">C'est un grand oui</button><button class="cp-btn" onclick="votePerson(false)">Pas mon genre</button></div></div></div>
             
             <div class="feed-ui">
               <div class="feed-top">
@@ -102,7 +102,7 @@
                       <span class="fm-more">ⓘ Plus d'infos</span>
                   </button>
               </div>
-              <div class="rail"><div class="rail-item"><button class="rb" id="btnSeen"><span>👀</span></button><span class="rb-lbl">Vu</span></div><div class="rail-item"><button class="rb" id="btnNope"><span>✕</span></button><span class="rb-lbl">Passe</span></div><div class="rail-item like-item"><div class="like-wrap" id="likeWrap"><svg class="ring" viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="45"/><circle class="ring-prog" id="ringProg" cx="50" cy="50" r="45"/></svg><button class="rb like" id="btnLike"><span>♥</span></button></div><span class="rb-lbl">Kiffe</span></div></div>
+              <div class="rail"><div class="rail-item"><button class="rb" id="btnSeen"><span>👀</span></button><span class="rb-lbl">Vu</span></div><div class="rail-item"><button class="rb" id="btnNope"><span>✕</span></button><span class="rb-lbl">Passe</span></div><div class="rail-item like-item"><div class="like-wrap" id="likeWrap"><svg class="ring" viewBox="0 0 100 100"><circle class="ring-track" cx="50" cy="50" r="45"/><circle class="ring-prog" id="ringProg" cx="50" cy="50" r="45"/></svg><button class="rb like" id="btnLike"><span>♥</span></button></div><span class="rb-lbl">Like</span></div></div>
             </div>
             <div class="flash" id="flash"></div>
           </section>
@@ -113,12 +113,12 @@
                     <h1 class="s-title">Sorties</h1>
                     <button class="icon-btn" id="btnToggleSearch">🔎</button>
                 </div>
-                <div class="search-bar" id="searchBar"><input id="searchInput" placeholder="Rechercher un film ou une série…"></div>
+                <div class="search-bar" id="searchBar"><input id="searchInput" placeholder="Trouver un film, une série…"></div>
                 <div class="chips">
                     <button class="chip active" data-filter="hot">🔥 Les + Attendus</button>
                     <button class="chip" data-filter="now">🎟️ Actuellement</button>
-                    <button class="chip" data-filter="this">Cette semaine</button>
-                    <button class="chip" data-filter="next">Semaine pro</button>
+                    <button class="chip" data-filter="this">📅 Cette semaine</button>
+                    <button class="chip" data-filter="next">🔜 Semaine pro</button>
                     <button class="chip" data-filter="avenir">🚀 À venir</button>
                 </div>
             </div>
@@ -133,15 +133,15 @@
               </div>
               <div class="b-card">
                 <div class="b-emoji">🚧</div>
-                <h2>Ouverture très prochainement</h2>
-                <p>Échange tes points contre des places, du pop-corn et des avant-premières.</p>
+                <h2>Prochainement sur Klap</h2>
+                <p>Tes points Klap te donneront accès à des places, de la confiserie, des avant-premières exclusives et plein d'autres récompenses.</p>
                 <div class="b-icons"><span>🎟️</span><span>🍿</span><span>🎬</span><span>🎁</span></div>
               </div>
               <button class="btn-primary points-info-btn" id="btnPointsInfo">📖 Comment fonctionnent les points ?</button>
               <div class="b-help">
-                <h3>Aide-nous à remplir les rayons</h3>
+                <h3>Dis-nous ce que tu veux y trouver</h3>
                 <p>Qu'est-ce qui te ferait vraiment dépenser tes points ?</p>
-                <button class="btn-primary" id="btnAvis">📝 Donner mon avis</button>
+                <button class="btn-primary" id="btnAvis">📝 Partager mes idées</button>
               </div>
             </div>
           </section>
@@ -161,11 +161,11 @@
               
               <div class="p-card">
                 <div class="p-row">
-                  <span class="p-row-label">Mon énergie du jour <button class="info-icon" id="activityInfo">i</button></span>
+                  <span class="p-row-label">Mes actions du jour <button class="info-icon" id="activityInfo">i</button></span>
                   <span id="energyCount">0 / 40</span>
                 </div>
                 <div class="p-bar"><span id="energyBar" style="width:0%"></span></div>
-                <p class="p-note" id="energyNote">Jauge tes actions rémunérées quotidiennes.</p>
+                <p class="p-note" id="energyNote">Tes points quotidiens.</p>
               </div>
 
               <div class="p-card" id="btnOpenNotifs" style="border-left: 3px solid #FF2D6B; background: rgba(255, 45, 107, 0.04); cursor:pointer;">
@@ -181,7 +181,7 @@
               </div>
 
               <div class="p-streak"><div class="streak-flame">🔥</div><div><div class="streak-num" id="uiStreak">0</div><div class="streak-lbl">jours de streak</div></div></div>
-              <button class="invite-btn" id="btnInvite">👥 Inviter / Rechercher un ami</button>
+              <button class="invite-btn" id="btnInvite">👥 Trouver mes amis</button>
               
               <div class="p-shelf"><div class="shelf-head"><h3>🎬 Mes envies <span id="watchCount">(0)</span></h3><button class="seeall" data-grid="watch">Tout voir ›</button></div><div class="strip" id="watchStrip"></div></div>
               <div class="p-shelf"><div class="shelf-head"><h3>🍿 Mes films vus <span id="seenCount">(0)</span></h3><button class="seeall" data-grid="seen">Tout voir ›</button></div><div class="strip" id="seenStrip"></div></div>
@@ -189,7 +189,7 @@
               <div class="lb">
                 <div class="lb-head" style="justify-content:space-between;">
                     <div style="display:flex; align-items:center; gap:8px;">
-                        <span class="lb-title">🏆 Leaderboard</span>
+                        <span class="lb-title">🏆 Classement</span>
                         <span style="font-size:14px; color:var(--txt2); font-weight:600; margin-top:2px;">Mensuel</span>
                     </div>
                     <button class="btn-ghost" id="btnHistory" style="margin:0; padding:6px 14px; font-size:12px; border:1px solid var(--line); border-radius:10px;">Historique</button>
@@ -211,17 +211,17 @@
              <div class="ov" id="ovAuth">
                 <div class="auth-hero">
                     <h1 class="auth-logo">KLAP<b>.</b></h1>
-                    <div class="auth-tagline">Swipe. Matche. Kiffe.</div>
+                    <div class="auth-tagline">Swipe. Matche. Like.</div>
                 </div>
                 <div class="auth-panel">
                     <h2 class="auth-title" id="authTitle">Créer un compte</h2>
-                    <input type="text" id="authPseudo" class="auth-input" placeholder="Ton pseudo unique (ex: joffrey)">
+                    <input type="text" id="authPseudo" class="auth-input" placeholder="Ton pseudo de cinéphile">
                     <input type="text" id="authEmail" class="auth-input" placeholder="Ton e-mail">
                     <input type="password" id="authPass" class="auth-input" placeholder="Mot de passe (6 car. min)">
                     <button class="auth-forgot" id="btnForgotPass" style="display:none;">Mot de passe oublié ?</button>
                     <p id="authError" style="color:#FF2D6B; font-size:14px; min-height:20px; margin:0; font-weight:500;"></p>
-                    <button class="auth-btn" id="authMainBtn">Rejoindre la commu</button>
-                    <button class="auth-switch" id="authSwitchBtn">Déjà un compte ? Me connecter</button>
+                    <button class="auth-btn" id="authMainBtn">Rejoindre la communauté</button>
+                    <button class="auth-switch" id="authSwitchBtn">J'ai déjà un compte</button>
                 </div>
              </div>
              
@@ -242,7 +242,7 @@
               <div class="sheet-panel">
                 <div class="sheet-handle" data-close></div>
                 <h2 class="qcm-title">Rechercher un ami</h2>
-                <p class="qcm-sub">Trouve tes potes pour comparer vos points et organiser vos séances.</p>
+                <p class="qcm-sub">Trouve tes amis pour comparer vos points et organiser vos séances.</p>
                 <div style="display:flex; flex-direction:column; gap:12px; margin-top:16px;">
                     <input type="text" id="searchFriendEmail" class="auth-input" placeholder="Pseudo (ou e-mail)" style="background:rgba(0,0,0,0.2);">
                     <div id="friendSearchResult" style="min-height:40px; margin-top:8px;"></div>
@@ -260,7 +260,7 @@
               </div>
             </div>
 
-             <div class="ov tuto" id="ovTuto"><div class="scrim glass"></div><div class="tuto-inner"><div class="tuto-hand">👆</div><h2 class="tuto-title">Bienvenue sur Klap</h2><ul class="tuto-list"><li><span>🔥</span> Swipe pour gagner des points et défier tes amis.</li><li><span>🍿</span> Informe-toi sur les dernières sorties.</li><li><span>🗣️</span> Donne ton avis sur les films et séries.</li></ul><button class="btn-primary tuto-btn" data-tuto-close>C'est parti</button></div></div>
+             <div class="ov tuto" id="ovTuto"><div class="scrim glass"></div><div class="tuto-inner"><div class="tuto-hand">👆</div><h2 class="tuto-title">Bienvenue sur Klap</h2><ul class="tuto-list"><li><span>🔥</span> Like tes films favoris, gagne des points et défie tes amis.</li><li><span>🍿</span> Découvre les dernières sorties séries, films, plateformes et les pépites du cinéma.</li><li><span>🗣️</span> Partage ton avis et fais monter la Hype.</li></ul><button class="btn-primary tuto-btn" data-tuto-close>C'est parti !</button></div></div>
              
              <div class="ov sheet" id="ovSheet">
                  <div class="scrim" data-close></div>
@@ -287,15 +287,15 @@
                  </div>
              </div>
 
-             <div class="ov popup" id="ovQualLeft"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui coince ?</h2><div class="grid2"><button class="qbtn" data-q="left"><span>❌</span>Le casting</button><button class="qbtn" data-q="left"><span>🥱</span>L'histoire</button><button class="qbtn" data-q="left"><span>🛑</span>Pas ma vibe</button><button class="qbtn" data-q="left"><span>📉</span>Trop cheap</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
-             <div class="ov popup" id="ovQualRight"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui te hype ?</h2><div class="grid2"><button class="qbtn" data-q="right"><span>⭐</span>Le casting</button><button class="qbtn" data-q="right"><span>🍿</span>L'action</button><button class="qbtn" data-q="right"><span>🤯</span>L'histoire</button><button class="qbtn" data-q="right"><span>❤️</span>Mon délire</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
+             <div class="ov popup" id="ovQualLeft"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui coince ?</h2><div class="grid2"><button class="qbtn" data-q="left"><span>❌</span>Le casting</button><button class="qbtn" data-q="left"><span>🥱</span>L'histoire</button><button class="qbtn" data-q="left"><span>🛑</span>Pas mon style</button><button class="qbtn" data-q="left"><span>📉</span>La réalisation</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
+             <div class="ov popup" id="ovQualRight"><div class="scrim glass" data-cancel-qual></div><div class="popup-panel"><h2 class="q-q">Qu'est-ce qui te hype ?</h2><div class="grid2"><button class="qbtn" data-q="right"><span>⭐</span>Le casting</button><button class="qbtn" data-q="right"><span>🍿</span>L'action</button><button class="qbtn" data-q="right"><span>🤯</span>L'histoire</button><button class="qbtn" data-q="right"><span>❤️</span>C'est mon style</button></div><button class="q-cancel" data-cancel-qual>Tapoter pour annuler</button></div></div>
              <div class="ov popup" id="ovAttr"><div class="scrim glass" data-attr-skip></div><div class="popup-panel"><h2 class="q-q" style="font-size:26px;">Où as-tu découvert cette œuvre ?</h2><div class="grid2" id="attrGrid"><button class="qbtn" data-attr>Au cinéma</button><button class="qbtn" data-attr>Dans la rue</button><button class="qbtn" data-attr>Réseaux Sociaux</button><button class="qbtn" data-attr>Bouche à oreille</button><button class="qbtn" data-attr style="grid-column: 1 / -1; width: calc(50% - 6px); margin: 0 auto;">Klap !</button></div><button class="q-cancel" data-attr-skip>Passer cette question</button></div></div>
              
-             <div class="ov match" id="ovMatch"><div class="match-bg"></div><div class="confetti" id="confetti"></div><div class="match-inner"><div class="match-poster" id="matchPoster"></div><div class="match-bubbles" id="matchBubbles"></div><h1 class="match-title">It's a Match !</h1><p class="match-sub" id="matchSub"></p><button class="btn-cta match-invite-btn" id="btnInviteMatch">👥 Invite tes amis</button><button class="btn-ghost" id="btnBackSwipe" style="margin-top:16px;">Retourner au swipe</button></div></div>
-             <div class="ov sheet" id="ovMatchFriends"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Avertir tes amis</h2><p class="qcm-sub">Sélectionne les amis avec qui organiser la séance.</p><div class="qcm-opts" id="matchFriendsList"></div><button class="btn-primary" id="btnSendInvites" style="margin-top:16px;" disabled>Valider l'invitation</button></div></div>
+             <div class="ov match" id="ovMatch"><div class="match-bg"></div><div class="confetti" id="confetti"></div><div class="match-inner"><div class="match-poster" id="matchPoster"></div><div class="match-bubbles" id="matchBubbles"></div><h1 class="match-title">It's a Match !</h1><p class="match-sub" id="matchSub"></p><button class="btn-cta match-invite-btn" id="btnInviteMatch">👥 Propose une séance à tes amis</button><button class="btn-ghost" id="btnBackSwipe" style="margin-top:16px;">Retourner au swipe</button></div></div>
+             <div class="ov sheet" id="ovMatchFriends"><div class="scrim" data-close></div><div class="sheet-panel"><div class="sheet-handle" data-close></div><h2 class="qcm-title">Proposer à tes amis</h2><p class="qcm-sub">Sélectionne les amis avec qui organiser la séance.</p><div class="qcm-opts" id="matchFriendsList"></div><button class="btn-primary" id="btnSendInvites" style="margin-top:16px;" disabled>Valider l'invitation</button></div></div>
              
              <div class="ov popup" id="ovPersonResult"><div class="scrim glass"></div><div class="popup-panel center">
-                <h2 class="q-q">La commu a parlé</h2>
+                <h2 class="q-q">La communauté a tranché</h2>
                 <p id="prTotalVotes" style="text-align:center; color:var(--txt2); font-size:14px; margin:0 0 16px 0; font-weight:600;">Calcul des votes...</p>
                 <div style="display:flex; justify-content:center; gap:30px; margin: 0 0 24px 0;">
                     <div><div style="font-size:42px;">😍</div><div id="prLike" style="font-family:var(--disp); font-size:36px; color:var(--mint);">-</div></div>
@@ -333,7 +333,7 @@
              <div class="ov popup" id="ovSeenGood">
                 <div class="scrim glass" data-close-seen></div>
                 <div class="popup-panel">
-                    <h2 class="q-q">Qu'est-ce qui a fait le job ?</h2>
+                    <h2 class="q-q">Qu'est-ce qui t'a convaincu ?</h2>
                     <div class="grid2">
                         <button class="qbtn-multi"><span>⭐</span>Le casting</button>
                         <button class="qbtn-multi"><span>📖</span>Le scénario</button>
@@ -348,12 +348,12 @@
             <div class="ov popup" id="ovSeenBad">
                 <div class="scrim glass" data-close-seen></div>
                 <div class="popup-panel">
-                    <h2 class="q-q">Qu'est-ce qui n'a pas marché ?</h2>
+                    <h2 class="q-q">Qu'est-ce qui t'a déçu ?</h2>
                     <div class="grid2">
                         <button class="qbtn-multi"><span>❌</span>Le casting</button>
                         <button class="qbtn-multi"><span>🥱</span>Le scénario</button>
-                        <button class="qbtn-multi"><span>📉</span>La réal</button>
-                        <button class="qbtn-multi"><span>🛑</span>Trop long</button>
+                        <button class="qbtn-multi"><span>📉</span>La réalisation</button>
+                        <button class="qbtn-multi"><span>🛑</span>Le rythme</button>
                     </div>
                     <button class="btn-primary" id="btnSeenBadValidate" style="margin-top:16px;" disabled>Valider</button>
                     <button class="q-cancel" data-close-seen>Plus tard</button>
