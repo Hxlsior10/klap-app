@@ -39,11 +39,14 @@ const QUIZ_LIST = [
 ];
 
 const SURVEY_LIST = [
-    { q: "À quelle fréquence vas-tu au cinéma ?", opts: ["Rarement", "1 fois/mois", "2 à 3 fois/mois", "Toutes les semaines"] },
-    { q: "Quel format d'écran préfères-tu pour un blockbuster ?", opts: ["IMAX", "Dolby Cinema", "4DX / ICE", "Standard"] },
-    { q: "Préfères-tu voir un film en VF ou en VOSTFR ?", opts: ["Toujours en VF", "Toujours en VO", "Ça dépend du film", "Peu importe"] },
+    { q: "Quel est ton mood ciné idéal le dimanche soir ?", opts: ["Canapé & Plaid", "Séance en solo", "Blockbuster & Popcorn", "Marathon séries"] },
+    { q: "Face à un film de plus de 3 heures, tu te dis...", opts: ["Let's go !", "Ça dépend du réal", "Il me faut une pause", "Beaucoup trop long"] },
+    { q: "Qu'est-ce qui te convainc de lancer un film ?", opts: ["Le casting", "Le synopsis", "La note Klap", "La bande-annonce"] },
+    { q: "Quelle est ta pire phobie au cinéma ?", opts: ["Les gens qui parlent", "Les écrans de tel", "Les coups dans le siège", "Rater le début"] },
     { q: "Avec qui vas-tu le plus souvent au cinéma ?", opts: ["En couple", "Entre potes", "En famille", "En solo"] },
-    { q: "Quel est ton genre de prédilection au cinéma ?", opts: ["Action / SF", "Comédie", "Horreur / Thriller", "Drame / Indé"] }
+    { q: "Quel est ton genre de prédilection ?", opts: ["Action / SF", "Comédie", "Horreur / Thriller", "Drame / Indé"] },
+    { q: "Ta consommation de popcorn en salle ?", opts: ["Fini avant le film", "Pendant l'action", "J'en prends jamais", "Plutôt bonbons"] },
+    { q: "Préfères-tu voir un film en VF ou en VO ?", opts: ["Toujours en VF", "Toujours en VO", "Ça dépend du film", "Peu importe"] }
 ];
 
 const PERSON_LIST = [
@@ -54,11 +57,53 @@ const PERSON_LIST = [
 ];
 
 const DUEL_LIST = [
-    { a: { name: "Interstellar", g: "url('https://image.tmdb.org/t/p/w780/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg')"}, b: { name: "Inception", g: "url('https://image.tmdb.org/t/p/w780/8Z8dptJW9WKZ8QloipL15PNDZ4u.jpg')"} },
-    { a: { name: "Dune", g: "url('https://image.tmdb.org/t/p/w780/d5NXSklXo0qyIYkgV94XAgMIckC.jpg')"}, b: { name: "Star Wars", g: "url('https://image.tmdb.org/t/p/w780/6FfCtAuVAW8XJjZ7eWeLibRLWTw.jpg')"} },
-    { a: { name: "Barbie", g: "url('https://image.tmdb.org/t/p/w780/cgYg04miVQUAG2FKk3amSnnHzOp.jpg')"}, b: { name: "Oppenheimer", g: "url('https://image.tmdb.org/t/p/w780/ncKCQVXglZXeCGtqGGk278RkE.jpg')"} },
-    { a: { name: "Le Seigneur des Anneaux", g: "url('https://image.tmdb.org/t/p/w780/jS0rP6N0Y92Q0zRpe0f0J8l9D.jpg')"}, b: { name: "Harry Potter", g: "url('https://image.tmdb.org/t/p/w780/gY1t1TOfSko22lA2B3v5JbT0AIn.jpg')"} }
+    { a: { name: "Interstellar", g: "url('https://image.tmdb.org/t/p/w780/nCbkCBtyuXqNEOUz22yKcw1H56t.jpg')"}, b: { name: "Inception", g: "url('https://image.tmdb.org/t/p/w780/oYuLEt3zVCKq57qu2F8dT7NIa6f.jpg')"} },
+    { a: { name: "Dune", g: "url('https://image.tmdb.org/t/p/w780/c54wEBMMg1H1NAlK5NqQ0017oP2.jpg')"}, b: { name: "Star Wars", g: "url('https://image.tmdb.org/t/p/w780/db32LaOibwEliAmvwkUjABiqGv9.jpg')"} },
+    { a: { name: "Barbie", g: "url('https://image.tmdb.org/t/p/w780/euDp2o627QOebKqZpQ96q7Z9f2U.jpg')"}, b: { name: "Oppenheimer", g: "url('https://image.tmdb.org/t/p/w780/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg')"} },
+    { a: { name: "Le Seigneur des Anneaux", g: "url('https://image.tmdb.org/t/p/w780/6oom5QYQ2yQTMJIhq1tO9AebgW.jpg')"}, b: { name: "Harry Potter", g: "url('https://image.tmdb.org/t/p/w780/wuMc08IPKEaVSvI1CItLIfAsohM.jpg')"} }
 ];
+
+/* ===================== VARIATIONS DES POPUPS ===================== */
+// Variations pour les Vidéos (Bandes-Annonces)
+const QUAL_RIGHT_TRAILER = [
+    { q: "Qu'est-ce qui te hype ?", opts: ["<span>⭐</span>Le casting", "<span>🍿</span>L'action", "<span>🤯</span>L'histoire", "<span>❤️</span>C'est mon style"] },
+    { q: "Pourquoi c'est un oui ?", opts: ["<span>🤩</span>Les acteurs", "<span>💥</span>Le visuel", "<span>📖</span>Le scénario", "<span>🔥</span>L'ambiance"] }
+];
+
+const QUAL_LEFT_TRAILER = [
+    { q: "Qu'est-ce qui coince ?", opts: ["<span>❌</span>Le casting", "<span>🥱</span>L'histoire", "<span>🛑</span>Pas mon style", "<span>📉</span>La réalisation"] },
+    { q: "Pourquoi on zappe ?", opts: ["<span>🙅</span>Les acteurs", "<span>😴</span>Le scénario", "<span>👎</span>Pas mon style", "<span>📺</span>L'image"] }
+];
+
+// Variations pour les Affiches (Posters)
+const QUAL_RIGHT_POSTER = [
+    { q: "Pourquoi ce visuel te parle ?", opts: ["<span>🎨</span>Le design", "<span>🤩</span>Les acteurs", "<span>✨</span>L'ambiance", "<span>🤔</span>Le titre m'intrigue"] },
+    { q: "Qu'est-ce qui t'attire ?", opts: ["<span>🖼️</span>L'esthétique", "<span>🎭</span>Le casting", "<span>🌌</span>L'univers", "<span>📝</span>Le titre"] }
+];
+
+const QUAL_LEFT_POSTER = [
+    { q: "Affiche ratée ?", opts: ["<span>📉</span>L'esthétique", "<span>😒</span>Le casting", "<span>🥱</span>Ça a l'air ennuyeux", "<span>🛑</span>Pas mon style"] },
+    { q: "Qu'est-ce qui manque ?", opts: ["<span>🎨</span>Le design", "<span>🙅</span>Les acteurs", "<span>😴</span>Trop classique", "<span>📝</span>Le titre"] }
+];
+
+const ATTR_VARS = [
+    { q: "Où as-tu découvert cette œuvre ?", opts: ["Au cinéma", "Dans la rue", "Réseaux Sociaux", "Bouche à oreille", "Klap !"] },
+    { q: "Comment as-tu connu ce film ?", opts: ["Affiches ciné", "Pub extérieure", "TikTok / Insta", "Un pote", "Via Klap"] },
+    { q: "Où as-tu vu passer ça ?", opts: ["Salles de ciné", "Transports en commun", "Sur les réseaux", "On me l'a conseillé", "Sur l'appli"] }
+];
+
+function randomizePopup(popupId, variations) {
+    const rand = variations[Math.floor(Math.random() * variations.length)];
+    const popup = $(popupId);
+    if(!popup) return;
+    
+    popup.querySelector('.q-q').textContent = rand.q;
+    
+    const btns = popup.querySelectorAll('.qbtn');
+    rand.opts.forEach((optHtml, idx) => {
+        if(btns[idx]) btns[idx].innerHTML = optHtml;
+    });
+}
 
 function show(id){ const el = $(id); if(el) el.classList.add('show'); }
 function hide(id){ const el = $(id); if(el) el.classList.remove('show'); }
@@ -81,8 +126,8 @@ $('#authSwitchBtn').addEventListener('click', () => {
         $('#btnForgotPass').style.display = 'block'; 
     } else {
         $('#authTitle').textContent = 'Créer un compte';
-        $('#authMainBtn').textContent = 'Rejoindre la commu';
-        $('#authSwitchBtn').textContent = 'Déjà un compte ? Me connecter';
+        $('#authMainBtn').textContent = 'Rejoindre la communauté';
+        $('#authSwitchBtn').textContent = "J'ai déjà un compte";
         $('#authPseudo').style.display = 'block'; 
         $('#authEmail').placeholder = 'Ton e-mail';
         $('#btnForgotPass').style.display = 'none'; 
@@ -148,7 +193,9 @@ auth.onAuthStateChanged(user => {
             if(doc.exists) {
                 const data = doc.data();
                 state.points = data.points || 0; state.xp = data.xp || 0; state.level = data.level || 1;
-                state.actionsToday = data.actionsToday || 0; state.streak = data.streak || 0; state.lastActionDate = data.lastActionDate || null;
+                state.actionsToday = data.actionsToday || 0; 
+                state.capped = state.actionsToday >= DAILY_ACTION_CAP; // Sécurité au chargement
+                state.streak = data.streak || 0; state.lastActionDate = data.lastActionDate || null;
                 state.watch = new Set(data.watch || []); state.seen = new Map(Object.entries(data.seen || {}));
                 
                 updateWatchUI(); updateSeenUI();
@@ -213,6 +260,7 @@ window.acceptFriend = async function(notifId, fromId) {
 window.refuseFriend = async function(notifId) { await db.collection('users').doc(auth.currentUser.uid).collection('notifications').doc(notifId).delete(); };
 
 $('#btnHistory').addEventListener('click', () => { show('#ovHistory'); });
+$('#btnOpenNotifs').addEventListener('click', () => { show('#ovNotifs'); });
 $('#btnInvite').addEventListener('click', () => { $('#searchFriendEmail').value = ''; $('#friendSearchResult').innerHTML = ''; show('#ovAddFriend'); });
 
 $('#btnSearchFriend').addEventListener('click', async () => {
@@ -400,9 +448,11 @@ function updateStreak() {
 }
 
 function updateEnergyUI() {
-  const current = state.actionsToday; const max = DAILY_ACTION_CAP;
-  $('#energyCount').textContent = `${current} / ${max}`; $('#energyBar').style.width = `${Math.min(100, (current/max)*100)}%`;
-  $('#energyNote').textContent = current < max ? `Encore ${max-current} action(s) rémunérée(s).` : "Quota atteint 🌙 Swipe juste pour le fun !";
+  const max = DAILY_ACTION_CAP;
+  const current = Math.min(state.actionsToday, max); // 👈 Bloque le compteur à 40 visuellement
+  $('#energyCount').textContent = `${current} / ${max}`; 
+  $('#energyBar').style.width = `${(current/max)*100}%`;
+  $('#energyNote').textContent = state.actionsToday < max ? `Tes points quotidiens : encore ${max-state.actionsToday} action(s).` : "Quota atteint 🌙 Swipe juste pour le fun !";
 }
 
 function addPoints(baseValue){
@@ -414,9 +464,11 @@ function addPoints(baseValue){
   const gain = Math.round(baseValue * (mults[state.level] || 1)); 
   state.xp += baseValue; state.points += gain;
 
+  if(state.actionsToday >= DAILY_ACTION_CAP) { state.capped = true; state.justCapped = true; likeWrap.classList.add('capped'); }
+
   if(auth.currentUser) db.collection('users').doc(auth.currentUser.uid).update({ points: state.points, xp: state.xp, actionsToday: state.actionsToday });
   $$('[data-pts]').forEach(el => animateValue(el, parseInt(el.textContent)||0, state.points, 500)); 
-  if(state.actionsToday >= DAILY_ACTION_CAP) { state.capped = true; state.justCapped = true; likeWrap.classList.add('capped'); }
+  
   return gain;
 }
 
@@ -585,6 +637,10 @@ function renderPerson(d) {
 async function votePerson(like) { 
     addPoints(10); 
     show('#ovPersonResult'); 
+    
+    // Alterne aléatoirement les deux phrases du sondage casting
+    $('#ovPersonResult .q-q').textContent = Math.random() > 0.5 ? "Les cinéphiles ont voté" : "La communauté a tranché";
+    
     $('#prLike').textContent = '...'; $('#prDislike').textContent = '...';
     $('#prTotalVotes').textContent = 'Calcul des votes...';
 
@@ -617,9 +673,9 @@ function renderCard(i){
   if(deck.length === 0) return;
   if(i >= deck.length) {
       $('#feedCard').style.display = 'none';
-      $('#cardQuiz').style.display = 'none'; 
-      $('#cardSurvey').style.display = 'none'; 
-      $('#cardAb').style.display = 'none'; 
+      $('#cardQuiz').style.display = 'none';
+      $('#cardSurvey').style.display = 'none';
+      $('#cardAb').style.display = 'none';
       $('#cardPerson').style.display = 'none';
       $('.feed-ui').style.display = 'none';
       $('#endOfDeck').style.display = 'flex';
@@ -629,13 +685,11 @@ function renderCard(i){
   
   state.deckIdx = i; const c = deck[state.deckIdx]; resetCard();
   
-  // 1. On force le masquage de toutes les cartes spéciales via JS
   $('#cardQuiz').style.display = 'none';
   $('#cardSurvey').style.display = 'none';
   $('#cardAb').style.display = 'none';
   $('#cardPerson').style.display = 'none';
 
-  // 2. On affiche uniquement la carte demandée
   if(c.kind==='trailer' || c.kind==='poster') {
       renderSwipeCard(c.film);
   } else if(c.kind==='quiz') { 
@@ -652,7 +706,6 @@ function renderCard(i){
       renderPerson(c); 
   }
 }
-
 function nextCard(){ renderCard(state.deckIdx+1); }
 
 /* ===================== SWIPE & GESTES ===================== */
@@ -667,7 +720,7 @@ card.addEventListener('pointermove',e=>{
   $('#stampLike').style.opacity=Math.max(0,Math.min(1,dx/90)); $('#stampNope').style.opacity=Math.max(0,Math.min(1,-dx/90));
 });
 card.addEventListener('pointerup',()=>{
-  if(!dragging)return; dragging=false; const T=92;
+  if(!dragging)return; dragging=false; const T=60;
   if(dx>T) fly('right'); else if(dx<-T) fly('left');
   else { if(Math.abs(dx)<8) openSheet(films[state.filmIdx]); snapBack(); }
 });
@@ -725,14 +778,26 @@ function addToWatch(title){ state.watch.add(title); if(auth.currentUser) db.coll
 
 function openQualif(side){
   getSwipeGain(); 
-  if (side === 'right') { show('#ovQualRight'); } else { show('#ovQualLeft'); }
+  const isPoster = feed.dataset.mode === 'poster'; // On vérifie si c'est une affiche ou une vidéo
+  
+  if (side === 'right') { 
+      randomizePopup('#ovQualRight', isPoster ? QUAL_RIGHT_POSTER : QUAL_RIGHT_TRAILER);
+      show('#ovQualRight'); 
+  } else { 
+      randomizePopup('#ovQualLeft', isPoster ? QUAL_LEFT_POSTER : QUAL_LEFT_TRAILER);
+      show('#ovQualLeft'); 
+  }
 }
 $$('#ovQualLeft .qbtn').forEach(b=>b.addEventListener('click',()=>{ 
     hide('#ovQualLeft'); 
     const pctPromise = fetchAndVoteFilm(currentFilm(), false);
     showFeedback({pctPromise, gain: 0, then: nextCard}); 
 }));
-$$('#ovQualRight .qbtn').forEach(b=>b.addEventListener('click',()=>{ hide('#ovQualRight'); show('#ovAttr'); }));
+$$('#ovQualRight .qbtn').forEach(b=>b.addEventListener('click',()=>{ 
+    hide('#ovQualRight'); 
+    randomizePopup('#ovAttr', ATTR_VARS); 
+    show('#ovAttr'); 
+}));
 $$('[data-cancel-qual]').forEach(el=>el.addEventListener('click',()=>{ hide('#ovQualLeft'); hide('#ovQualRight'); snapBack(); }));
 $$('[data-attr]').forEach(b=>b.addEventListener('click',afterRightData)); $$('[data-attr-skip]').forEach(el=>el.addEventListener('click',afterRightData));
 
@@ -832,7 +897,7 @@ function showFeedback({pctPromise, gain=0, then=null}){
           $('#fbSub').textContent = "Pas assez de votes Klap pour afficher la Hype !";
       } else {
           $('#fbPct').textContent = pct + '%';
-          $('#fbSub').textContent = "La commu est d'accord avec ce choix !";
+          $('#fbSub').textContent = "La communauté est d'accord avec ce choix !";
           requestAnimationFrame(()=>requestAnimationFrame(()=>{ 
               $('#fbBar').style.transition='width 1.1s cubic-bezier(.2,.85,.25,1)'; 
               $('#fbBar').style.width=pct+'%'; 
@@ -848,12 +913,12 @@ $$('.qcm-opt:not(.friend-btn)').forEach(o=>o.addEventListener('click',()=>o.clas
 
 function updateWatchUI(){
   $('#watchCount').textContent='('+state.watch.size+')'; const strip=$('#watchStrip'); strip.innerHTML='';
-  if(state.watch.size===0) strip.innerHTML='<p class="strip-empty">Aucun film pour l\'instant.</p>'; 
+  if(state.watch.size===0) strip.innerHTML='<p class="strip-empty">Ta liste est vide. Swipe à droite pour remplir !</p>'; 
   else [...state.watch].forEach(title=>{ const f=films.find(x=>x.title===title); if(!f)return; const c=document.createElement('div'); c.className='s-card'; c.innerHTML=`<div class="s-poster" style="background:url('${f.poster}') center/cover no-repeat" onclick="openSheetByTitle('${f.title.replace(/'/g, "\\'")}')"></div><p>${f.title}</p>`; strip.appendChild(c); });
 }
 function updateSeenUI(){
   $('#seenCount').textContent='('+state.seen.size+')'; const strip=$('#seenStrip'); strip.innerHTML='';
-  if(state.seen.size===0) strip.innerHTML='<p class="strip-empty">Aucun film noté.</p>'; 
+  if(state.seen.size===0) strip.innerHTML='<p class="strip-empty">Tu n\'as pas encore noté de film.</p>'; 
   else [...state.seen.entries()].forEach(([title,r])=>{ const f=films.find(x=>x.title===title); if(!f)return; const c=document.createElement('div'); c.className='s-card'; c.innerHTML=`<div class="s-poster" style="background:url('${f.poster}') center/cover no-repeat" onclick="openSheetByTitle('${f.title.replace(/'/g, "\\'")}')"><span class="s-badge">★ ${r}/5</span></div><p>${f.title}</p>`; strip.appendChild(c); });
 }
 
