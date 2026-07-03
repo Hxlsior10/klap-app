@@ -171,23 +171,69 @@ button:focus-visible{outline:2px solid var(--hype);outline-offset:2px}
 @keyframes flashNo{0%{opacity:0;background:rgba(255,45,107,0)}28%{opacity:1;background:rgba(255,45,107,.42)}100%{opacity:0;background:rgba(255,45,107,0)}}
 
 /* CORRECTION DE L'AFFICHAGE CINEMA (VRAI PLEIN ÉCRAN) */
-.app.cinema #screen-feed{background:#000; z-index: 9999;}
+.app.cinema #screen-feed { 
+    background: #000; 
+    z-index: 9999; 
+}
+
 .app.cinema .fc-media {
     position: absolute !important;
-    top: 50% !important; left: 50% !important;
+    top: 50% !important; 
+    left: 50% !important;
+    /* On croise les dimensions pour le mode paysage */
     width: 100cqh !important; 
     height: 100cqw !important;
-    max-width: 100vh !important;
-    max-height: 100vw !important;
+    max-width: none !important;
+    max-height: none !important;
     transform: translate(-50%, -50%) rotate(90deg) !important;
     z-index: 10000;
     background: #000;
 }
-.app.cinema .feed-ui, .app.cinema .tabbar, .app.cinema .fc-scrim, .app.cinema .fc-particles, .app.cinema .fc-sheen, .app.cinema .stamp { display:none !important; opacity:0; pointer-events:none; }
 
-.cinema-exit{display:none; position:absolute; top:40px; right:20px; z-index:10005; height:38px; border-radius:11px;
-  background:rgba(0,0,0,.6); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,.3); color:#fff; font-size:14px; font-weight:600; padding: 0 16px; cursor:pointer}
-.app.cinema .cinema-exit{display:flex; align-items:center; justify-content:center;}
+/* LA NOUVELLE RÈGLE : on écrase le top: 40% et l'aspect-ratio */
+.app.cinema .fc-video-wrapper {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    transform: none !important;
+    aspect-ratio: auto !important;
+}
+
+.app.cinema .feed-ui, 
+.app.cinema .tabbar, 
+.app.cinema .fc-scrim, 
+.app.cinema .fc-particles, 
+.app.cinema .fc-sheen, 
+.app.cinema .stamp { 
+    display: none !important; 
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+.cinema-exit {
+    display: none; 
+    position: absolute; 
+    top: 40px; 
+    right: 20px; 
+    z-index: 10005; 
+    height: 38px; 
+    border-radius: 11px;
+    background: rgba(0,0,0,.6); 
+    backdrop-filter: blur(8px); 
+    border: 1px solid rgba(255,255,255,.3); 
+    color: #fff; 
+    font-size: 14px; 
+    font-weight: 600; 
+    padding: 0 16px; 
+    cursor: pointer;
+}
+
+.app.cinema .cinema-exit {
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}
 
 .tabbar{position:absolute;left:0;right:0;bottom:0;height:94px;padding:12px 12px 28px;display:flex;justify-content:space-around;align-items:flex-start;
   background:linear-gradient(to top,rgba(0,0,0,.9),rgba(0,0,0,.5) 52%,transparent);z-index:1000;pointer-events:none;transition:opacity .4s}
